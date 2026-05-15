@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>校园数字孪生系统</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- ImportMap：通过 CDN 引入 Three.js 及其扩展 -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 左上：建筑信息面板 -->
+  <div id="info-panel">
+    <div id="panel-title">🏫 校园数字孪生系统</div>
+    <div id="panel-content">点击建筑查看详细信息</div>
+  </div>
+
+  <!-- 加载提示 -->
+  <div id="loading" class="show">正在构建校园场景</div>
+
+  <!-- 右上：当前视角标签 -->
+  <div id="view-label">透视视角</div>
+
+  <!-- 右下：图层控制面板 -->
+  <div id="layer-panel">
+    <div class="layer-title">📂 图层控制</div>
+    <label class="layer-item active" data-layer="buildings">
+      <span class="layer-icon">🏛️</span>
+      <span class="layer-name">建筑</span>
+      <span class="layer-toggle">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </span>
+    </label>
+    <label class="layer-item active" data-layer="roads">
+      <span class="layer-icon">🛤️</span>
+      <span class="layer-name">道路</span>
+      <span class="layer-toggle">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </span>
+    </label>
+    <label class="layer-item active" data-layer="trees">
+      <span class="layer-icon">🌳</span>
+      <span class="layer-name">植被</span>
+      <span class="layer-toggle">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </span>
+    </label>
+    <label class="layer-item active" data-layer="details">
+      <span class="layer-icon">✨</span>
+      <span class="layer-name">装饰</span>
+      <span class="layer-toggle">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </span>
+    </label>
+  </div>
+
+  <!-- 底部：视角切换按钮 -->
+  <div id="controls">
+    <button class="btn active" data-view="perspective">透视</button>
+    <button class="btn" data-view="bird">鸟瞰</button>
+    <button class="btn" data-view="front">正面</button>
+    <button class="btn" data-view="top">俯视</button>
+    <button class="btn" id="tour-btn">漫游</button>
+  </div>
+
+  <!-- 底部统计 -->
+  <div id="stats">
+    <span id="buildings-count">建筑: 0</span>
+    <span id="trees-count">树木: 0</span>
+    <span id="roads-count">道路: 0</span>
+  </div>
+
+  <!-- 时间控制 -->
+  <div id="time-controls">
+    <div class="time-header">🌓 昼夜</div>
+    <input type="range" id="time-slider" min="0" max="1" step="0.001" value="0.5" />
+    <span id="time-label">12:00</span>
+  </div>
+
+  <!-- 底部操作提示 -->
+  <div id="hint">🖱 左键旋转 · 滚轮缩放 · 右键平移 · 点击建筑查看详情 · T键漫游</div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
